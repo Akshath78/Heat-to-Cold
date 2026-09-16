@@ -66,6 +66,10 @@ The system is designed around local operation and local monitoring, with GSM-bas
 
 The architecture is intended to be adaptable to different storage capacities and deployment conditions, including farm-level and production-cluster installations.
 
+
+## Schematic
+<img width="1600" height="853" alt="image" src="https://github.com/user-attachments/assets/2eeead67-0720-4b68-a6ff-499121f842e6" />
+
 ## System Workflow
 
 ```text
