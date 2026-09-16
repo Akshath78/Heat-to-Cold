@@ -19,7 +19,7 @@ Heat to Cold is a physics-based, solar-powered mini cold-storage system designed
 | **Receiving window** | 3.5 h |
 | **Weather basis** | PVGIS ERA5, Guwahati design point, 2023 |
 
-The repository contains the modular simulation code, site weather input, optimization outputs, engineering documentation and automated tests used to evaluate the system.
+The repository contains the modular simulation code, site weather input, optimization outputs, engineering documentation, automated tests and the embedded firmware used for the working prototype.
 
 ## Why This Project
 
@@ -35,6 +35,7 @@ Small and decentralized cold-storage units can help reduce the dependence on dis
 - **Predictive / priority-based control** using room, product, PCM and electrical states
 - **Physics-based transient simulation** with thermal and electrical balance checks
 - **Constrained NSGA-II optimization** across coupled system design variables
+- **Working prototype control firmware** using an Arduino-compatible controller, DHT22 sensor and relay-controlled cooling
 - **Offline-first architecture** with local monitoring and GSM alert capability
 
 ## System Workflow
@@ -53,6 +54,8 @@ Site-specific weather + storage requirements
         Higher-resolution validation
                     ↓
              Final design study
+                    ↓
+           Physical prototype
 ```
 
 ## System Architecture
@@ -81,7 +84,30 @@ Site-specific weather + storage requirements
                        ▼
               Local monitoring
                + GSM alerts
+
+        Physical prototype layer
+                       │
+             DHT22 temperature/RH
+                       ↓
+             Arduino-compatible MCU
+                       ↓
+              Relay-controlled cooling
 ```
+
+## Working Prototype
+
+The repository also contains the firmware used for the working cold-storage prototype under [`prototype/`](prototype/).
+
+The prototype reads temperature and relative humidity from a DHT22 sensor and uses hysteresis-based relay control:
+
+```text
+Temperature ≥ 30 °C  →  Cooling ON
+Temperature ≤ 28 °C  →  Cooling OFF
+```
+
+The relay is configured as **active LOW**, and sensor read failures are reported through the serial interface. The firmware runs independently of the research simulation and represents the embedded control used in the physical prototype.
+
+See [`prototype/cold_storage_prototype.ino`](prototype/cold_storage_prototype.ino) and [`prototype/README.md`](prototype/README.md) for the implementation and hardware interface details.
 
 ## Current Design Basis
 
@@ -286,6 +312,7 @@ This test is intentionally expensive and requires the production dependencies pl
 - [`docs/system_architecture.md`](docs/system_architecture.md) — system-level architecture and subsystem relationships
 - [`docs/thermodynamic_model.md`](docs/thermodynamic_model.md) — modeled thermal, moisture and energy domains
 - [`docs/optimization_methodology.md`](docs/optimization_methodology.md) — optimization variables, objectives, constraints and fidelity strategy
+- [`prototype/README.md`](prototype/README.md) — working prototype firmware and hardware interface
 
 ## Repository Structure
 
@@ -306,6 +333,10 @@ Heat-to-Cold/
 │       ├── control.py
 │       ├── optimizer.py
 │       └── analysis.py
+│
+├── prototype/
+│   ├── cold_storage_prototype.ino
+│   └── README.md
 │
 ├── data/
 │   └── weather/
