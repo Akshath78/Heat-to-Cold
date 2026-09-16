@@ -1,0 +1,35 @@
+{
+  "n_unique_evaluations": 1200,
+  "n_feasible": 863,
+  "n_pareto": 55,
+  "recommended": {
+    "x": [
+      14.0,
+      29.88461773,
+      817.67716778,
+      9.8012466,
+      12.0,
+      17.77402477,
+      11869.14176084,
+      25.28129668
+    ],
+    "feasible": true
+  },
+  "files": {
+    "pareto_objective_matrix.png": "optimization_figures/pareto_objective_matrix.png",
+    "pareto_3d_design_tradeoff.png": "optimization_figures/pareto_3d_design_tradeoff.png",
+    "pv_battery_evaluated_design_space.png": "optimization_figures/pv_battery_evaluated_design_space.png",
+    "pv_battery_feasibility_frontier.png": "optimization_figures/pv_battery_feasibility_frontier.png",
+    "pareto_parallel_coordinates_design.png": "optimization_figures/pareto_parallel_coordinates_design.png",
+    "pareto_parallel_coordinates_objectives.png": "optimization_figures/pareto_parallel_coordinates_objectives.png",
+    "compact_4x4_sensitivity_heatmap.png": "optimization_figures/compact_4x4_sensitivity_heatmap.png",
+    "constraint_violation_distribution.png": "optimization_figures/constraint_violation_distribution.png",
+    "failure_mode_distribution.png": "optimization_figures/failure_mode_distribution.png",
+    "pareto_upper_bound_activity.png": "optimization_figures/pareto_upper_bound_activity.png",
+    "recommended_vs_feasible_median.png": "optimization_figures/recommended_vs_feasible_median.png",
+    "nsga2_convergence_history.png": "optimization_figures/nsga2_convergence_history.png",
+    "hypervolume_convergence.png": "optimization_figures/hypervolume_convergence.png",
+    "objective_distribution_all_vs_pareto.png": "optimization_figures/objective_distribution_all_vs_pareto.png",
+    "figure_pack_pdf": "optimization_figures/optimization_research_figure_pack.pdf"
+  }
+}

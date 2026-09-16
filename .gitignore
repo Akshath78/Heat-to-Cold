@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+.DS_Store
+*.log
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Generated simulation outputs
+results/generated/
+data/weather/generated/
