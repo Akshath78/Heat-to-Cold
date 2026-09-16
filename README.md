@@ -2,36 +2,85 @@
 
 ## Solar-Powered Smart Mini Cold Storage System
 
-**Heat to Cold** is a physics-based, solar-powered mini cold-storage system designed for decentralized cold-chain access near farming communities in Northeast India. The project combines solar PV, battery storage, refrigeration, PCM thermal storage, humidity-aware cooling and constrained multi-objective optimization in one engineering workflow.
+> **Physics-based cold-storage sizing and optimization for decentralized cold-chain access in Northeast India.**
 
-## Overview
+Heat to Cold is a physics-based, solar-powered mini cold-storage system designed around a 5 MT cold room. It combines solar PV, battery storage, vapor-compression refrigeration, biochar-enhanced organic PCM thermal storage, humidity-aware cooling, predictive / priority-based control and constrained multi-objective optimization in one engineering workflow.
 
-The system is designed around a 5 MT cold room with site-specific weather inputs. The engineering model evaluates coupled thermal and electrical behavior, including warm-product loading, moisture control, refrigeration, PCM storage, PV generation, battery operation and system-level optimization.
+## Project at a Glance
 
-### Main features
+| | Design basis |
+|---|---:|
+| **Storage capacity** | 5 MT |
+| **Cold-room size** | ~3.05 × 3.05 × 2.44 m |
+| **Incoming produce** | 30 °C |
+| **Room setpoint** | 4 °C |
+| **Target RH** | 90–98% preferred operating band |
+| **Daily turnover** | 15% of inventory |
+| **Receiving window** | 3.5 h |
+| **Weather basis** | PVGIS ERA5, Guwahati design point, 2023 |
 
-- Solar PV and battery energy system
-- Vapor-compression refrigeration model
-- Biochar-enhanced organic PCM thermal storage concept
-- Temperature and relative-humidity control
-- Produce cooling and storage-state modeling
-- Predictive / priority-based cooling control
-- Offline-first monitoring with GSM alert capability
-- Physics-based transient simulation
-- Constrained NSGA-II optimization
+The repository contains the modular simulation code, site weather input, optimization outputs, engineering documentation and automated tests used to evaluate the system.
+
+## Why This Project
+
+Small and decentralized cold-storage units can help reduce the dependence on distant centralized facilities by providing local temperature-controlled storage near production clusters. The design therefore considers not only refrigeration capacity, but also renewable generation, battery operation, thermal storage, humidity, warm-product loading and system-level operating constraints.
+
+## Key Features
+
+- **Solar + battery energy system** for renewable-powered refrigeration
+- **Vapor-compression refrigeration model** with evaporator and condenser behavior
+- **Biochar-enhanced organic PCM storage** for thermal buffering
+- **Humidity-aware cooling** with condensation, frost and defrost modeling
+- **Produce thermal-state modeling** including warm incoming product, respiration and transpiration
+- **Predictive / priority-based control** using room, product, PCM and electrical states
+- **Physics-based transient simulation** with thermal and electrical balance checks
+- **Constrained NSGA-II optimization** across coupled system design variables
+- **Offline-first architecture** with local monitoring and GSM alert capability
 
 ## System Workflow
 
 ```text
-Site-specific weather + system requirements
+Site-specific weather + storage requirements
                     ↓
-          Physics-based model
+             Physics-based model
                     ↓
-        NSGA-II system optimization
+        Coupled thermal/electrical simulation
                     ↓
-            Sensitivity analysis
+             NSGA-II optimization
                     ↓
-        Validation + final design
+             Sensitivity analysis
+                    ↓
+        Higher-resolution validation
+                    ↓
+             Final design study
+```
+
+## System Architecture
+
+```text
+          PVGIS weather + design inputs
+                       │
+                       ▼
+              Physics-based model
+                       │
+          ┌────────────┼────────────┐
+          ▼            ▼            ▼
+         PV         Battery        PCM
+          └────────────┼────────────┘
+                       ▼
+                 Refrigeration
+                       ▼
+                   Cold room
+                       │
+             ┌─────────┴─────────┐
+             ▼                   ▼
+       Temperature / RH      Product state
+             └─────────┬─────────┘
+                       ▼
+              Priority control
+                       ▼
+              Local monitoring
+               + GSM alerts
 ```
 
 ## Current Design Basis
